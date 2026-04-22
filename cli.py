@@ -68,7 +68,7 @@ def display_error(message: str):
 def place_order(
     symbol: str = typer.Option(..., help="Trading pair, e.g., BTCUSDT"),
     side: str = typer.Option(..., help="BUY or SELL"),
-    type: str = typer.Option(..., help="MARKET, LIMIT, or STOP"),
+    order_type: str = typer.Option(..., "--type", help="MARKET, LIMIT, or STOP"),
     quantity: float = typer.Option(..., help="Order quantity"),
     price: Optional[float] = typer.Option(None, help="Limit price (required for LIMIT and STOP)"),
     stop_price: Optional[float] = typer.Option(None, help="Stop price (required for STOP)")
@@ -76,7 +76,7 @@ def place_order(
     """
     Place a new order on Binance Futures Testnet.
     """
-    order_type = type.upper()
+    order_type = order_type.upper()
     side = side.upper()
     
     display_summary_table(symbol, side, order_type, quantity, price, stop_price)
